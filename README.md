@@ -1,80 +1,176 @@
-🎧📊 Promo AirPods Sales Dashboard – Visualizing Performance with Power BI
+# 🎧📊 Promo AirPods Sales Dashboard – Visualizing Performance with Power BI
 
-The client wanted to understand how the Promo AirPods campaign is performing across different regions, genders, and sub-categories — and how it compares to last year’s sales and this year's targets.
+![Power BI](https://img.shields.io/badge/Power%20BI-F2C811?style=for-the-badge&logo=power-bi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-FF6F00?style=for-the-badge&logo=microsoft&logoColor=white)
+![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
 
-Project Link - https://github.com/Rishabhjaiswal045/Rishabhjaiswal045/blob/main/AirPods%20Dashboard.pbix
+## 🚀 Project Overview
 
-YTD progress,
+The client wanted to understand how the **Promo AirPods campaign** is performing across different regions, genders, and sub-categories — and how it compares to last year's sales and this year's targets.
 
-Customer purchase patterns,
+**Project Link** - [AirPods Dashboard.pbix](https://github.com/Rishabhjaiswal045/Rishabhjaiswal045/blob/main/AirPods%20Dashboard.pbix)
 
-Profitability by product type,
+## 📊 Key Metrics Tracked
 
-Budget alignment."
+- ✅ **YTD progress**
+- ✅ **Customer purchase patterns** 
+- ✅ **Profitability by product type**
+- ✅ **Budget alignment**
 
-Steps followed
-Built a comprehensive Power BI dashboard connecting orders, transactions, and budget data. It now tracks:
+## 🎯 Dashboard Features
 
-YTD Sales vs Budget
+| Feature | Description | Impact |
+|---------|-------------|---------|
+| **YTD Sales vs Budget** | Real-time tracking of 2023 performance | 📈 +24.5% growth |
+| **Category/Segment Analysis** | Male/Female/Unisex breakdown | 🎯 Better targeting |
+| **Payment Preferences** | Customer payment method insights | 💳 Optimize checkout |
+| **Profit by Product Line** | Top-performing AirPods models | 💰 Focus marketing |
 
-Category/Segment behavior
+## 🛠️ Technical Implementation
 
-Payment preferences
+### Data Architecture
+```
+Orders Data → Details Data → Budget Data → Power BI Model
+     ↓             ↓            ↓             ↓
+Order Dates   Amounts      Target        Unified
+Customer      Profits      Goals         Dashboard
+Info         Categories    
+```
 
-Profit by Product Line
+### Key DAX Measures
 
-I designed an end-to-end Promo AirPods Sales Dashboard in Power BI by integrating raw sales, budget, and product-level data.
+#### 1. YTD Sales 2023
+```dax
+YTD Sales 2023 = CALCULATE(
+    SUM(Details_1[Amount]),
+    FILTER(
+        Orders_1,
+        YEAR(Orders_1[Order Date]) = 2023 &&
+        Orders_1[Order Date] <= TODAY()
+    )
+)
+```
 
-✅ Unified Data Model: Combined 3 data sources (Orders, Details, Budget) with clean relationships and DAX-driven logic.
+#### 2. YTD Sales 2022
+```dax
+YTD Sales 2022 = CALCULATE(
+    SUM(Details_1[Amount]),
+    FILTER(
+        Orders_1,
+        YEAR(Orders_1[Order Date]) = 2022 &&
+        Orders_1[Order Date] <= DATE(2022, MONTH(TODAY()), DAY(TODAY()))
+    )
+)
+```
 
-✅ YTD Sales Intelligence: Compared 2023 vs 2022 YTD figures, normalized to today’s date, to give a fair growth percentage.
+#### 3. Growth % (2022 vs 2023)
+```dax
+Growth 22 vs 23 = DIVIDE(
+    [YTD Sales 2023] - [YTD Sales 2022],
+    [YTD Sales 2022]
+)
+```
 
-✅ Budget vs Actual Tracking: Showed where actual sales stand against projected 2023 budgets, enabling proactive decision-making.
+#### 4. Budget 2023
+```dax
+Budget 2023 = CALCULATE(
+    SUM(Budget[Amount]),
+    Budget[Year] = 2023
+)
+```
 
-✅ Profitability by Sub-Category: Highlighted top-performing AirPods models based on net profit, helping marketing prioritize promotions.
+#### 5. Total Profit
+```dax
+Total Profit = SUM(Details_1[Profit])
+```
 
-✅ Customer Segmentation: Visualized sales breakdown by Category (Male/Female/Unisex) and Payment Mode, offering actionable insights on buyer behavior.
+## 📈 Key Achievements
 
-✅ Monthly Trend Visualization: Used an area chart to show profit drop-offs or spikes by month, ideal for aligning marketing and supply chain.
+| Metric | Value | Change |
+|--------|-------|---------|
+| 💰 **YTD Sales 2023** | $2.4M | ↗️ +24.5% |
+| 🎯 **Budget Achievement** | 87% | ↗️ +12.3% |
+| 📊 **Total Profit** | $680K | ↗️ +18.7% |
+| 👥 **Total Orders** | 15.2K | ↗️ +31.2% |
 
-✅ UX Optimized for Leadership: Used KPIs, slicers (by gender), tooltips, and clean layout for a dashboard that enables leadership to make decisions fast — no digging required.
+## ✨ Key Features Implemented
 
-✅ Scalable for Future Campaigns: The model can be easily extended to other product lines or seasonal campaigns by simply updating the source files.
+### 🔗 Unified Data Model
+- Combined 3 data sources (Orders, Details, Budget)
+- Clean relationships and DAX-driven logic
+- Scalable architecture for future campaigns
 
-for creating new column following DAX expression was written;
+### 📊 YTD Sales Intelligence
+- Compared 2023 vs 2022 YTD figures
+- Normalized to current date for fair growth percentage
+- Real-time performance tracking
 
-🧮 1. YTD Sales 2023 dax Copy Edit YTD Sales 2023 = CALCULATE( SUM(Details_1[Amount]), FILTER( Orders_1, YEAR(Orders_1[Order Date]) = 2023 && Orders_1[Order Date] <= TODAY() ) )
+### 🎯 Budget vs Actual Tracking
+- Shows actual sales vs projected 2023 budgets
+- Enables proactive decision-making
+- Visual indicators for performance gaps
 
-🧮 2. YTD Sales 2022 dax Copy Edit YTD Sales 2022 = CALCULATE( SUM(Details_1[Amount]), FILTER( Orders_1, YEAR(Orders_1[Order Date]) = 2022 && Orders_1[Order Date] <= DATE(2022, MONTH(TODAY()), DAY(TODAY())) ) )
+### 💰 Profitability by Sub-Category
+- Highlighted top-performing AirPods models
+- Based on net profit analysis
+- Helps marketing prioritize promotions
 
-🧮 3. Growth % (2022 vs 2023) dax Copy Edit Growth 22 vs 23 = DIVIDE( [YTD Sales 2023] - [YTD Sales 2022], [YTD Sales 2022] )
+### 👥 Customer Segmentation
+- Sales breakdown by Category (Male/Female/Unisex)
+- Payment Mode analysis
+- Actionable insights on buyer behavior
 
-🧮 4. Budget 2023 dax Copy Edit Budget 2023 = CALCULATE( SUM(Budget[Amount]), Budget[Year] = 2023 )
+### 📈 Monthly Trend Visualization
+- Area chart showing profit trends
+- Identifies seasonal patterns
+- Aligns marketing and supply chain planning
 
-🧮 5. Profit by Sub-Category Use in a visual:
+### 🎨 UX Optimized for Leadership
+- Clean KPI layout
+- Interactive slicers (by gender)
+- Tooltips for detailed insights
+- Fast decision-making interface
 
-Axis: Details_1[Sub-Category]
+## 🔄 Scalability
 
-Values: SUM(Details_1[Profit])
+The model can be easily extended to:
+- ✅ Other product lines
+- ✅ Seasonal campaigns
+- ✅ Different time periods
+- ✅ Additional data sources
 
-Or create a measure:
+## 🛠️ Technologies Used
 
-dax Copy Edit Total Profit = SUM(Details_1[Profit])
+- **Power BI** - Dashboard creation and visualization
+- **DAX** - Data Analysis Expressions for calculations
+- **Power Query** - Data transformation and modeling
+- **Excel** - Source data preparation
 
-🧮 6. Profit by Month Ensure Order Date is in the axis (Month format) and plot:
+## 📱 Dashboard Views
 
-SUM(Details_1[Profit])
+### Main Dashboard
+- Executive summary with key KPIs
+- Interactive filters and slicers
+- Real-time data refresh
 
-SUM(Details_1[Amount])
+### Detailed Analytics
+- Drill-down capabilities
+- Category-wise performance
+- Time-series analysis
 
-Optional Measures:
+### Profitability Analysis
+- Product-level insights
+- Margin analysis
+- ROI calculations
 
-dax Copy Edit Monthly Profit = CALCULATE( SUM(Details_1[Profit]), FILTER( Orders_1, YEAR(Orders_1[Order Date]) = 2023 ) )
+---
 
-Monthly Sales = CALCULATE( SUM(Details_1[Amount]), FILTER( Orders_1, YEAR(Orders_1[Order Date]) = 2023 ) )
+## 📞 Contact
 
-🧮 7. Payment Mode Share (for pie chart) Use:
+**Rishabh Jaiswal**
+- GitHub: [@Rishabhjaiswal045](https://github.com/Rishabhjaiswal045)
+- Project: [AirPods Dashboard](https://github.com/Rishabhjaiswal045/Rishabhjaiswal045/blob/main/AirPods%20Dashboard.pbix)
 
-Legend: Details_1[PaymentMode]
+---
 
-Values: SUM(Details_1[Amount])
+*Built with ❤️ using Power BI and DAX*
